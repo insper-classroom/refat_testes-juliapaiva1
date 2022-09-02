@@ -7,8 +7,22 @@
 # ---------------------------------------------------------------------------
 
 
-
+produtos = []
 class Produto:
 
     def __init__(self, id='', nome=''):
-        pass
+        self.id = id
+        self.nome = nome
+
+    def dicionario_produtos(self):
+        dicionario = {
+            'nome': self.nome
+        }
+        return dicionario
+        
+    def busca_nome(self, nome=''):
+        if nome in produtos:
+            return nome
+
+
+

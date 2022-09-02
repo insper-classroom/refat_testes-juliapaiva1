@@ -9,7 +9,6 @@
 import requests
 import json
 
-
 class Endereco: 
     '''
     Endereço de uma pessoa ou conta.
@@ -29,6 +28,7 @@ class Endereco:
             self.complemento = complemento
             self.cep = str(cep)
 
+
         else:
 
             self.rua = rua
@@ -38,6 +38,23 @@ class Endereco:
             self.complemento = complemento
             self.cep = str(cep)
 
+    def endereco_usuario(self):
+
+        endereco = {
+            'rua': self.rua,
+            'estado': self.estado,
+            'cidade': self.cidade,
+            'numero': self.numero,
+            'complemento': self.complemento,
+            'cep': self.cep
+
+        }
+
+        return endereco
+
+           
+    def __str__(self):
+        return str(self.rua) + ' ' + str(self.numero) + '' + str(self.complemento) + ' - ' + str(self.cep) + ' - ' + str(self.cidade) + ' - ' + str(self.estado)
 
     def consultar_cep(self, cep):
         '''
@@ -46,21 +63,46 @@ class Endereco:
         '''
         # continuam existindo variaveis locais, nem tudo é propriedade de objeto
 
+        if len(str(cep)) !=8:
+            return False
+        
+
+        if isinstance(cep, (int, str)) == False:
+            return False
+
+
+        if RuntimeError == True:
+            raise RuntimeError('Sem conexão com a internet. Tente novamente')
+
+        else:
+
         # end point da API de consulta ao cep
-        url_api = f'https://viacep.com.br/ws/{str(cep)}/json/'
+            url_api = f'https://viacep.com.br/ws/{str(cep)}/json/'
+
+            
 
         # Sem corpo na requisição
         # Não é necessario nenhum cabeçalho HTTP especial
-        payload = {}
-        headers = {}
+            payload = {}
+            headers = {}
 
-        # requisição GET na url de pesquisa do cep. Doc.: https://viacep.com.br/
-        response = requests.request("GET", url_api, headers=headers, data=payload)
+    # requisição GET na url de pesquisa do cep. Doc.: https://viacep.com.br/
+            response = requests.request("GET", url_api, headers=headers, data=payload) 
+        
+            
+            
 
-        # converte a resposta json em dict
-        json_resp = response.json()
-        return json_resp
+    # converte a resposta json em dict
+            json_resp = response.json()
 
+            if json_resp == {"erro": "true"}:
+                return False
+            else:    
+                return json_resp
 
+    
+    def endereco_faturamento(self, end_faturamento):
+        self.end_faturamento = end_faturamento
 
-
+    def endereco_entrega(self, end_entrega):
+        self.end_entrega = end_entrega

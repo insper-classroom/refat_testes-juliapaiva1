@@ -15,17 +15,15 @@ from classes.PessoaFisica import PessoaFisica
 
 class Carrinho:
 
-    def __init__(self):
+    def __init__(self, ):
         # Chave é o id do Produto e o Valor é a quantidade desse item no carrinho
-        self.__itens = {}
+        self.itens = {}
 
     def adicionar_item(self, item:Produto, qtd):
         
-        id = item.get_id()
-        
-        # Implemente a adição do item no dicionário
+        #id = item.get_id()
+        self.itens[item] = qtd
         
 
     def remover_item(self, item:Produto):
-        pass
-        # Implemente este método
+        del self.itens[item]

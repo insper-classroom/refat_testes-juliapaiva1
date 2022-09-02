@@ -19,3 +19,19 @@ class Pedido:
     PAGO = 2
     pass
     
+    def __init__(self, pessoa, carrinho):
+        self.pedido = {}
+        self.pedido['Pessoa'] = pessoa
+        self.pedido['Carrinho'] = carrinho
+
+    def __str__(self):
+        return str(self.pedido)
+
+    def endereco_faturamento(self, end_faturamento):
+        self.end_faturamento = end_faturamento
+
+    def endereco_entrega(self, end_entrega):
+        self.end_entrega = end_entrega
+
+    def status():
+        return True 
