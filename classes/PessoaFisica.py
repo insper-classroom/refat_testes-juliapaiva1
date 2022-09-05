@@ -44,5 +44,5 @@ class PessoaFisica:
         return self.enderecos
     
     def busca_nome(self, nome=''):
-        if nome in clientes:
+        if nome in PessoaFisica.clientes:
             return nome 

@@ -3,4 +3,5 @@ from classes.Carrinho import Carrinho
 import numpy as np
 
 def test_carrinho():
-    return Carrinho()
+    carrinho = Carrinho()
+    return carrinho.adicionar_item('sabonete', 7)

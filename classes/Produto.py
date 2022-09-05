@@ -7,12 +7,17 @@
 # ---------------------------------------------------------------------------
 
 
-produtos = []
+
 class Produto:
+    produtos = []
 
     def __init__(self, id='', nome=''):
         self.id = id
         self.nome = nome
+        Produto.produtos.append(self)
+
+    def __str__(self):
+        return str(self.id) + ' ' + str(self.nome) 
 
     def dicionario_produtos(self):
         dicionario = {
@@ -21,7 +26,7 @@ class Produto:
         return dicionario
         
     def busca_nome(self, nome=''):
-        if nome in produtos:
+        if nome in Produto.produtos:
             return nome
 
 
